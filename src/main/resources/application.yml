@@ -1,0 +1,22 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: spring-boot-master-slave-datasource
+  datasource:
+    master:
+      url: ${DATA_SOURCE_URL:jdbc:mysql://localhost:3306/sample}
+      username: ${DATA_SOURCE_USERNAME:sample}
+      password: ${DATA_SOURCE_PASSWORD:Sample@2022}
+      driver-class-name: ${DATA_SOURCE_DRIVER_CLASS_NAME:com.mysql.cj.jdbc.Driver}
+    slave:
+      url: ${DATA_SOURCE_URL:jdbc:mysql://localhost:3306/sample}
+      username: ${DATA_SOURCE_USERNAME:sample-read}
+      password: ${DATA_SOURCE_PASSWORD:Sample@2022}
+      driver-class-name: ${DATA_SOURCE_DRIVER_CLASS_NAME:com.mysql.cj.jdbc.Driver}
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.connection.handling_mode: DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION
